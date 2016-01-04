@@ -43,7 +43,7 @@ class TranslitTestCase(unittest.TestCase):
         """
         Unit-test for testing translify's exceptions
         """
-        self.assertRaises(ValueError, pytils.translit.translify, u'\u00bfHabla espa\u00f1ol?')
+        self.assertRaises(ValueError, pytils.translit.translify, '\u00bfHabla espa\u00f1ol?')
 
     def testDetransliteration(self):
         """
