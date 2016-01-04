@@ -69,7 +69,7 @@ class TranslitTestCase(unittest.TestCase):
         """
         self.ckSlug("ТеСт", 'test')
         self.ckSlug("Проверка связи", 'proverka-svyazi')
-        self.ckSlug("me&yo", 'me-and-you')
+        self.ckSlug("me&you", 'me-and-you')
         self.ckSlug("и еще один тест", 'i-esche-odin-test')
 
     def testSlugExceptions(self):

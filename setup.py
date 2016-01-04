@@ -11,7 +11,7 @@ if use_setuptools:
 else:
     from distutils.core import setup
 
-version = "0.3.1"
+version = "0.4.0"
 
 setup_data = {
       'name': 'pytils',
@@ -33,7 +33,7 @@ dates in russian without locales, transliteration, etc)""",
           'Operating System :: OS Independent',
           'Programming Language :: Python',
           'Natural Language :: Russian',
-          'Development Status :: 4 - Beta',
+          #'Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
         ],
     }
