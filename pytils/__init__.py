@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 Simple processing for russian strings
 """
-VERSION = '0.3.1dev'
+VERSION = '0.4.0'
 
 from pytils import numeral, dt, translit, typo
