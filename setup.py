@@ -18,7 +18,7 @@ setup_data = {
       'version': version,
       'author': 'Yury Yurevich',
       'author_email': 'yyurevich@jellycrystal.com',
-      'url': 'https://github.com/j2a/pytils/',
+      'url': 'https://github.com/shultais/pytils/',
       'description': 'Russian-specific string utils',
       'long_description': """Simple tools for processing strings in russian
 (choose proper form for plurals, in-words representation of numerals,
