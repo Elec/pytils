@@ -115,8 +115,8 @@ def distance_of_time_in_words(from_time, accuracy=1, to_time=None):
     words.append("%d %s" % (days, numeral.choose_plural(days, DAY_VARIANTS)))
     values.append(days)
 
-    words.append("%d %s" % \
-                  (hours, numeral.choose_plural(hours, HOUR_VARIANTS)))
+    words.append("%d %s" %
+                 (hours, numeral.choose_plural(hours, HOUR_VARIANTS)))
     values.append(hours)
 
     days == 0 and hours == 1 and current and alternatives.append("час")
@@ -124,12 +124,11 @@ def distance_of_time_in_words(from_time, accuracy=1, to_time=None):
     minutes = minutes_orig - hours_orig*60
 
     words.append("%d %s" % (minutes,
-                              numeral.choose_plural(minutes, MINUTE_VARIANTS)))
+                             numeral.choose_plural(minutes, MINUTE_VARIANTS)))
     values.append(minutes)
 
     days == 0 and hours == 0 and minutes == 1 and current and \
         alternatives.append("минуту")
-
 
     # убираем из values и words конечные нули
     while values and not values[-1]:
@@ -153,30 +152,31 @@ def distance_of_time_in_words(from_time, accuracy=1, to_time=None):
     # альтернативные варианты нужны только если в real_words одно значение
     # и, вдобавок, если используется текущее время
     alter_str = limit == 1 and current and alternatives and \
-                           alternatives[0]
+        alternatives[0]
     _result_str = alter_str or real_str
     result_str = in_future and "%s %s" % (PREFIX_IN, _result_str) \
-                           or "%s %s" % (_result_str, SUFFIX_AGO)
+        or "%s %s" % (_result_str, SUFFIX_AGO)
 
     # если же прошло менее минуты, то real_words -- пустой, и поэтому
     # нужно брать alternatives[0], а не result_str
     zero_str = minutes == 0 and not real_words and \
-            (in_future and "менее чем через минуту" \
-                        or "менее минуты назад")
+        (in_future and "менее чем через минуту"
+         or "менее минуты назад")
 
     # нужно использовать вчера/позавчера/завтра/послезавтра
     # если days 1..2 и в real_words одно значение
     day_alternatives = DAY_ALTERNATIVES.get(days, False)
     alternate_day = day_alternatives and current and limit == 1 and \
-                    ((in_future and day_alternatives[1]) \
-                                 or day_alternatives[0])
+        ((in_future and day_alternatives[1])
+         or day_alternatives[0])
 
     final_str = not real_words and zero_str or alternate_day or result_str
 
     return final_str
 
 
-def ru_strftime(format="%d.%m.%Y", date=None, inflected=False, inflected_day=False, preposition=False):
+def ru_strftime(format="%d.%m.%Y", date=None, inflected=False,
+                inflected_day=False, preposition=False):
     """
     Russian strftime without locale
 
@@ -185,13 +185,13 @@ def ru_strftime(format="%d.%m.%Y", date=None, inflected=False, inflected_day=Fal
 
     @param date: date value, default=None translates to today
     @type date: C{datetime.date} or C{datetime.datetime}
-    
+
     @param inflected: is month inflected, default False
     @type inflected: C{bool}
-    
+
     @param inflected_day: is day inflected, default False
     @type inflected: C{bool}
-    
+
     @param preposition: is preposition used, default False
         preposition=True automatically implies inflected_day=True
     @type preposition: C{bool}
@@ -203,12 +203,12 @@ def ru_strftime(format="%d.%m.%Y", date=None, inflected=False, inflected_day=Fal
         date = datetime.datetime.today()
 
     weekday = date.weekday()
-    
+
     prepos = preposition and DAY_NAMES[weekday][3] or ""
-    
+
     month_idx = inflected and 2 or 1
     day_idx = (inflected_day or preposition) and 2 or 1
-    
+
     # for russian typography standard,
     # 1 April 2007, but 01.04.2007
     if '%b' in format or '%B' in format:

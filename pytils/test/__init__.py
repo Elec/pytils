@@ -9,6 +9,7 @@ import sys
 def get_django_suite():
     try:
         import django
+        django.setup()
     except ImportError:
         return unittest.TestSuite()
     
@@ -46,4 +47,3 @@ def run(verbosity=1):
 
 if __name__ == '__main__':
     run(2)
-
