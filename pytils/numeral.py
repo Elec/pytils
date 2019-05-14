@@ -139,12 +139,12 @@ def choose_plural(amount, variants):
 
     @raise ValueError: variants' length lesser than 3
     """
-    
+
     if isinstance(variants, six.text_type):
         variants = split_values(variants)
     check_length(variants, 3)
     amount = abs(amount)
-    
+
     if amount % 10 == 1 and amount % 100 != 11:
         variant = 0
     elif amount % 10 >= 2 and amount % 10 <= 4 and \
@@ -152,7 +152,7 @@ def choose_plural(amount, variants):
         variant = 1
     else:
         variant = 2
-    
+
     return variants[variant]
 
 
@@ -359,7 +359,10 @@ def sum_string(amount, gender, items=None):
     check_positive(amount)
 
     if amount == 0:
-        return "ноль %s" % five_items
+        if five_items:
+            return "ноль %s" % five_items
+        else:
+            return "ноль"
 
     into = ''
     tmp_val = amount
@@ -405,7 +408,7 @@ def _sum_string_fn(into, tmp_val, gender, items=None):
     if items is None:
         items = ("", "", "")
     one_item, two_items, five_items = items
-    
+
     check_positive(tmp_val)
 
     if tmp_val == 0:

@@ -188,7 +188,7 @@ class DistanceOfTimeInWordsTestCase(unittest.TestCase):
         self.ckDefaultToTime("in_1day", 1, "завтра")
         self.ckDefaultToTime("in_1day1hr", 1, "завтра")
         self.ckDefaultToTime("in_2day", 1, "послезавтра")
-        
+
     def testDOTIWDefaultToTimeAcc2(self):
         """
         Unit-tests for distance_of_time_in_words with default to_time and accuracy=2
@@ -217,7 +217,7 @@ class DistanceOfTimeInWordsTestCase(unittest.TestCase):
         self.ckDefaultToTime("in_1day", 2, "завтра")
         self.ckDefaultToTime("in_1day1hr", 2, "через 1 день 1 час")
         self.ckDefaultToTime("in_2day", 2, "послезавтра")
-        
+
     def testDOTIWDefaultToTimeAcc3(self):
         """
         Unit-tests for distance_of_time_in_words with default to_time and accuracy=3
@@ -270,7 +270,7 @@ class DistanceOfTimeInWordsTestCase(unittest.TestCase):
         Unit-tests for testings distance_of_time_in_words' exceptions
         """
         self.assertRaises(ValueError, pytils.dt.distance_of_time_in_words, time.time(), 0)
-    
+
     def testIssue25DaysFixed(self):
         """
         Unit-test for testing that Issue#25 is fixed (err when accuracy==1, days<>0, hours==1)
@@ -286,7 +286,7 @@ class DistanceOfTimeInWordsTestCase(unittest.TestCase):
         d_hours = datetime.datetime.now() - datetime.timedelta(0, 46865)
         self.assertEquals(pytils.dt.distance_of_time_in_words(d_hours),
                           "13 часов назад")
-        
+
 
 class RuStrftimeTestCase(unittest.TestCase):
     """
@@ -298,7 +298,7 @@ class RuStrftimeTestCase(unittest.TestCase):
         Setting up environment for tests
         """
         self.date = datetime.date(2006, 8, 25)
-    
+
     def ck(self, format, estimates, date=None):
         """
         Checks w/o inflected
@@ -347,7 +347,7 @@ class RuStrftimeTestCase(unittest.TestCase):
         self.ckInflected("тест выполнен %d %B %Y года",
                           "тест выполнен 25 августа 2006 года")
         self.ckInflectedDay("тест выполнен в %A", "тест выполнен в пятницу")
-    
+
     def testRuStrftimeWithPreposition(self):
         """
         Unit-tests for pytils.dt.ru_strftime with preposition option
@@ -355,11 +355,11 @@ class RuStrftimeTestCase(unittest.TestCase):
         self.ckPreposition("тест %a", "тест в\xa0пт")
         self.ckPreposition("тест %A", "тест в\xa0пятницу")
         self.ckPreposition("тест %A", "тест во\xa0вторник", datetime.date(2007, 6, 5))
-    
+
     def testRuStrftimeZeros(self):
         """
         Unit-test for testing that Issue#24 is correctly implemented
-        
+
         It means, 1 April 2007, but 01.04.2007
         """
         self.ck("%d.%m.%Y", "01.04.2007", datetime.date(2007, 4, 1))
@@ -376,7 +376,17 @@ class RuStrftimeTestCase(unittest.TestCase):
                               datetime.date(2007,3,18),
                               inflected_day=True)
                          )
-        
+
+    def test_special_case(self):
+        self.assertEqual(
+            "октябрь",
+            pytils.dt.ru_strftime(
+                '%B',
+                inflected=False,
+                date=datetime.datetime.fromtimestamp(1540209256)
+            ),
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

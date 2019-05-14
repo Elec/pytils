@@ -31,7 +31,7 @@ class ChoosePluralTestCase(unittest.TestCase):
         """
         self.assertEquals(pytils.numeral.choose_plural(amount, self.variants),
                           estimated)
-    
+
     def testChoosePlural(self):
         """
         Unit-test for choose_plural
@@ -83,7 +83,7 @@ class GetPluralTestCase(unittest.TestCase):
         self.assertEquals(
             pytils.numeral.get_plural(0, "комментарий, комментария, комментариев"),
             "0 комментариев")
-        
+
     def testGetPluralAbsence(self):
         """
         Test get_plural with absence
@@ -113,7 +113,7 @@ class GetPluralTestCase(unittest.TestCase):
         self.assertEquals(
             pytils.numeral._get_plural_legacy(0, "комментарий, комментария, комментариев, без комментариев"),
             "без комментариев")
-        
+
 
 class GetFloatRemainderTestCase(unittest.TestCase):
     """
@@ -208,7 +208,7 @@ class RublesTestCase(unittest.TestCase):
         Unit-test for testing rubles' exceptions
         """
         self.assertRaises(ValueError, pytils.numeral.rubles, -15)
-        
+
 
 class InWordsTestCase(unittest.TestCase):
     """
@@ -219,6 +219,7 @@ class InWordsTestCase(unittest.TestCase):
         """
         Unit-test for in_words_int
         """
+        self.assertEquals(pytils.numeral.in_words_int(0), "ноль")
         self.assertEquals(pytils.numeral.in_words_int(10), "десять")
         self.assertEquals(pytils.numeral.in_words_int(5), "пять")
         self.assertEquals(pytils.numeral.in_words_int(102), "сто два")
@@ -356,7 +357,7 @@ class SumStringTestCase(unittest.TestCase):
     """
     Test case for pytils.numeral.sum_string
     """
-    
+
     def setUp(self):
         """
         Setting up environment for tests
@@ -411,7 +412,7 @@ class SumStringTestCase(unittest.TestCase):
         self.ckFemaleOldStyle(10, "десять шляпок")
         self.ckFemaleOldStyle(2, "две шляпки")
         self.ckFemaleOldStyle(31, "тридцать одна шляпка")
-        
+
         self.ckFemaleOldStyle(long(31), "тридцать одна шляпка")
 
         self.assertEquals("одиннадцать негритят",
@@ -431,7 +432,7 @@ class SumStringTestCase(unittest.TestCase):
         self.ckFemale(10, "десять шляпок")
         self.ckFemale(2, "две шляпки")
         self.ckFemale(31, "тридцать одна шляпка")
-        
+
         self.ckFemale(long(31), "тридцать одна шляпка")
 
         self.assertEquals("одиннадцать негритят",
